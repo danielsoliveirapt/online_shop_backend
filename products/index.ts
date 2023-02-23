@@ -24,14 +24,15 @@ app.use('/API/v1/', ProductsRoutes);
 app.listen(port, () => console.log(`App listening on port ${port}!`))*/
 
 const express = require("express");
-const mongoose = require("mongoose");
+const port = 4545;
+const mongoose2 = require("mongoose");
 const productRouter = require("./routes/productsRoutes.js");
 
 const app = express();
 
 app.use(express.json());
-
-mongoose.connect(
+mongoose2.set("strictQuery", true);
+mongoose2.connect(
   "mongodb+srv://tg5:tg5admin@tabdtg5.3cxsf.mongodb.net/products?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
@@ -41,11 +42,6 @@ mongoose.connect(
 
 app.use(productRouter);
 
-app.listen(3000, () => {
-  console.log("Server is running...");
+app.listen(port, () => {
+  console.log(`Products server is running and listening on port ${port}!`);
 });
-
-
-
-
-
