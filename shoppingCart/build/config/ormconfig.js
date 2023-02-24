@@ -18,7 +18,7 @@ const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
         host: "localhost",
         port: 3306,
         username: "root",
-        password: "",
+        password: "123456",
         database: "shop",
         synchronize: true,
         entities: [Product_1.Product, Cart_1.Cart],

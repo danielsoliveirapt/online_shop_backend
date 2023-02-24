@@ -22,10 +22,10 @@ router.post("/", async (req: Request, res: Response) => {
 })
 
 router.delete("/:id", async (req: Request, res: Response) => {
-  await Product.delete(req.params.id);
+	await Product.delete(req.params.id);
 
   res.json({
-      message: "Record deleted successfully."
+    message: "Record deleted successfully."
   })
 })
 

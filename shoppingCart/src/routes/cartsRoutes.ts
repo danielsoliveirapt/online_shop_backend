@@ -1,26 +1,40 @@
 import express, { Request, Response } from "express";
 import { Cart } from "../entities/Cart";
 import { Product } from "../entities/Product";
+import { createQueryBuilder } from "typeorm";
 
 const router = express.Router();
 
 router.get("/", async (req: Request, res: Response) => {
-  var productsCart: Array<any> = [];
-	await Cart.find().then((carts) => {
+  await Cart.find({
+    relations: {
+      products: true,
+    },
+  }).then((carts) => {
     res.json(carts);
+    //let productsCart: Array<any> = [];
+    //let objBdRetorno = {...item, product}
+    //let objBdRetorno = {};
+    //let arrProducts: any[] = ['1', '2'];
+
+    //await Cart.find().then((carts) => {
+    //carts.Cart.push();
+    //arrProducts.push(4, 5);
+    //console.log(carts);
+    //res.json(arrProducts);
+    
     /*Object.keys(data).forEach((key) => {
       Product.findBy({ shoppingCartId: data[key].id }).then((product) => {
         res.json(product);
       })
-    })
-    productsCart = carts;
-    carts.forEach((item) => {
+    })*/
+    /*carts.forEach((item) => {
       Product.findBy({ shoppingCartId: item.shoppingCartId }).then((product) => {
-        productsCart.push(product);
-        res.json(productsCart);
+        let objBdRetorno = {...item, product}
+        res.json(objBdRetorno);
       })
-    });
-    for (var i=0; i < carts.length; i++){
+    });*/
+    /*for (var i=0; i < carts.length; i++){
       Product.findBy({ shoppingCartId: carts[i].shoppingCartId }).then((product) => {
         productsCart.push(carts[i]);
         productsCart.push(product);

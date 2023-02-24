@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
-
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne } from "typeorm";
+import {Cart} from "./Cart";
 @Entity() 
 export class Product extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -15,5 +15,8 @@ export class Product extends BaseEntity {
   quantity!: number;
 
   @Column()
-  shoppingCartId!: number;
+  cartShoppingCartId!: number;
+
+  @ManyToOne(() => Cart, (cart) => cart.products)
+    cart: Cart;
 }

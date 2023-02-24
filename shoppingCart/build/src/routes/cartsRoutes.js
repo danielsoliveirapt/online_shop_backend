@@ -16,22 +16,33 @@ const express_1 = __importDefault(require("express"));
 const Cart_1 = require("../entities/Cart");
 const router = express_1.default.Router();
 router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var productsCart = [];
-    yield Cart_1.Cart.find().then((carts) => {
+    yield Cart_1.Cart.find({
+        relations: {
+            products: true,
+        },
+    }).then((carts) => {
         res.json(carts);
+        //let productsCart: Array<any> = [];
+        //let objBdRetorno = {...item, product}
+        //let objBdRetorno = {};
+        //let arrProducts: any[] = ['1', '2'];
+        //await Cart.find().then((carts) => {
+        //carts.Cart.push();
+        //arrProducts.push(4, 5);
+        //console.log(carts);
+        //res.json(arrProducts);
         /*Object.keys(data).forEach((key) => {
           Product.findBy({ shoppingCartId: data[key].id }).then((product) => {
             res.json(product);
           })
-        })
-        productsCart = carts;
-        carts.forEach((item) => {
+        })*/
+        /*carts.forEach((item) => {
           Product.findBy({ shoppingCartId: item.shoppingCartId }).then((product) => {
-            productsCart.push(product);
-            res.json(productsCart);
+            let objBdRetorno = {...item, product}
+            res.json(objBdRetorno);
           })
-        });
-        for (var i=0; i < carts.length; i++){
+        });*/
+        /*for (var i=0; i < carts.length; i++){
           Product.findBy({ shoppingCartId: carts[i].shoppingCartId }).then((product) => {
             productsCart.push(carts[i]);
             productsCart.push(product);

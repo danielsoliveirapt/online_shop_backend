@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
 const typeorm_1 = require("typeorm");
+const Cart_1 = require("./Cart");
 let Product = class Product extends typeorm_1.BaseEntity {
 };
 __decorate([
@@ -32,7 +33,11 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Product.prototype, "shoppingCartId", void 0);
+], Product.prototype, "cartShoppingCartId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => Cart_1.Cart, (cart) => cart.products),
+    __metadata("design:type", Cart_1.Cart)
+], Product.prototype, "cart", void 0);
 Product = __decorate([
     (0, typeorm_1.Entity)()
 ], Product);
