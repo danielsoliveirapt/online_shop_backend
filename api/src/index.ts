@@ -1,11 +1,14 @@
 import express, {Request, Response} from 'express';
+import { ApiController } from './controller/api.controller';
 
 class Server {
+  private apiController:ApiController;
   private app: express.Application;
 
   constructor(){
     this.app = express();
     this.configuration();
+    this.apiController = new ApiController(); // Cria uma nova instância da api controller
     this.routes();
   }
 
@@ -14,9 +17,8 @@ class Server {
   }
 
   public async routes(){
-    this.app.get('/', (req: Request, res: Response) => {
-      res.send("Hello world!");
-    });
+    this.apiController = new ApiController();
+    this.app.use(`/api`,this.apiController.router);
   }
 
   public start(){

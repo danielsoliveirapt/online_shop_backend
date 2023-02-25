@@ -13,10 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const api_controller_1 = require("./controller/api.controller");
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
         this.configuration();
+        this.apiController = new api_controller_1.ApiController(); // Cria uma nova instância da api controller
         this.routes();
     }
     configuration() {
@@ -24,9 +26,8 @@ class Server {
     }
     routes() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.app.get('/', (req, res) => {
-                res.send("Hello world!");
-            });
+            this.apiController = new api_controller_1.ApiController();
+            this.app.use(`/api`, this.apiController.router);
         });
     }
     start() {

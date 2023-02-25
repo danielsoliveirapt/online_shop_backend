@@ -22,33 +22,6 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         },
     }).then((carts) => {
         res.json(carts);
-        //let productsCart: Array<any> = [];
-        //let objBdRetorno = {...item, product}
-        //let objBdRetorno = {};
-        //let arrProducts: any[] = ['1', '2'];
-        //await Cart.find().then((carts) => {
-        //carts.Cart.push();
-        //arrProducts.push(4, 5);
-        //console.log(carts);
-        //res.json(arrProducts);
-        /*Object.keys(data).forEach((key) => {
-          Product.findBy({ shoppingCartId: data[key].id }).then((product) => {
-            res.json(product);
-          })
-        })*/
-        /*carts.forEach((item) => {
-          Product.findBy({ shoppingCartId: item.shoppingCartId }).then((product) => {
-            let objBdRetorno = {...item, product}
-            res.json(objBdRetorno);
-          })
-        });*/
-        /*for (var i=0; i < carts.length; i++){
-          Product.findBy({ shoppingCartId: carts[i].shoppingCartId }).then((product) => {
-            productsCart.push(carts[i]);
-            productsCart.push(product);
-            res.json(productsCart);
-          })
-        }*/
     });
 }));
 exports.default = router;
