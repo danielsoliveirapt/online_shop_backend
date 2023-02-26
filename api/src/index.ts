@@ -1,5 +1,10 @@
 import express, {Request, Response} from 'express';
 import { ApiController } from './controller/api.controller';
+import "./config/swagger";
+import swaggerUi from 'swagger-ui-express';
+import swaggerFile from '../swagger_output.json'; 
+import cors from "cors"
+require('dotenv').config();
 
 class Server {
   private apiController:ApiController;
@@ -7,6 +12,8 @@ class Server {
 
   constructor(){
     this.app = express();
+    this.app.use(cors());
+    this.app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
     this.configuration();
     this.apiController = new ApiController(); // Cria uma nova instância da api controller
     this.routes();

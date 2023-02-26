@@ -12,14 +12,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const Product_1 = require("../src/entities/Product");
 const Cart_1 = require("../src/entities/Cart");
+require('dotenv').config();
 const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
     (0, typeorm_1.createConnection)({
         type: 'mysql',
-        host: "localhost",
+        host: process.env.DB_HOST,
         port: 3306,
-        username: "root",
-        password: "",
-        database: "shop",
+        username: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
         synchronize: true,
         entities: [Product_1.Product, Cart_1.Cart],
     });

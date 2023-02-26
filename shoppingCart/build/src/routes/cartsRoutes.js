@@ -14,14 +14,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const Cart_1 = require("../entities/Cart");
+const jsonMessagesDb = require('../assets/jsonMessagesDb');
 const router = express_1.default.Router();
 router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    yield Cart_1.Cart.find({
-        relations: {
-            products: true,
-        },
-    }).then((carts) => {
-        res.json(carts);
-    });
+    try {
+        yield Cart_1.Cart.find({
+            relations: {
+                products: true,
+            },
+        }).then((carts) => {
+            res.send(carts);
+        });
+    }
+    catch (error) {
+        res.status(jsonMessagesDb.db.dbError.status).send(jsonMessagesDb.db.dbError);
+        throw error;
+    }
 }));
 exports.default = router;

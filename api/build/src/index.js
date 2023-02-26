@@ -14,9 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const api_controller_1 = require("./controller/api.controller");
+require("./config/swagger");
+const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
+const swagger_output_json_1 = __importDefault(require("../swagger_output.json"));
+const cors_1 = __importDefault(require("cors"));
+require('dotenv').config();
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
+        this.app.use((0, cors_1.default)());
+        this.app.use("/docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_output_json_1.default));
         this.configuration();
         this.apiController = new api_controller_1.ApiController(); // Cria uma nova instância da api controller
         this.routes();
