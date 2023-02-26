@@ -1,27 +1,9 @@
 import express, { Request, Response } from "express";
-const productModel = require("../models/product");
 const app = express();
-const jsonMessagesDb = require('../assets/jsonMessagesDb');
+const productsController = require('../controllers/productsController');
 
-app.get("/listProducts", async (req: Request, res: Response) => {
-  const products = await productModel.find({});
-  try {
-    res.send(products);
-  } catch (error) {
-    res.status(jsonMessagesDb.db.dbError.status).send(jsonMessagesDb.db.dbError);
-    throw error;
-  }
-});
+app.get("/listProducts", productsController.listProducts);
 
-app.post("/addProduct", async (req: Request, res: Response) => {
-  const product = new productModel(req.body);
-  try {
-    await product.save();
-    res.status(jsonMessagesDb.db.successInsert.status).send(jsonMessagesDb.db.successInsert);
-  } catch (error) {
-    res.status(jsonMessagesDb.db.dbError.status).send(jsonMessagesDb.db.dbError);
-    throw error;
-  }
-});
+app.post("/addProduct", productsController.addProduct);
 
 module.exports = app;

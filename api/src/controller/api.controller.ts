@@ -6,15 +6,8 @@ const validateToken = require("../middleware/auth");
 const jwt = require("jsonwebtoken")
 require('dotenv').config();
 
-export class ApiController{
-  public router: Router;
-
-  constructor(){
-    this.router = Router();
-    this.routes();
-  }
-
-  public getProducts = async (req: Request, res: Response) => {
+module.exports = {
+  getProducts: async (req: Request, res: Response) => {
     // #swagger.tags = ['Produtos']
     // #swagger.summary = 'Endpoint que retorna todos os produtos da loja'
     const url = 'http://localhost:4545/listProducts';
@@ -22,9 +15,8 @@ export class ApiController{
     .then(function(response: any) {
       res.send(response.data);
     });
-  }
-
-  public addProduct = async (req: Request, res: Response) => {
+  },
+  addProduct: async (req: Request, res: Response) => {
     // #swagger.tags = ['Carrinho de compras']
     // #swagger.summary = 'Endpoint que permite adicionar produtos a um carrinho de compras'
     const url = 'http://localhost:5555/products/';
@@ -35,9 +27,8 @@ export class ApiController{
       description: "Produto adicionado com sucesso." } */
       res.send(response.data);
     });
-  }
-
-  public removeProduct = (req: Request, res: Response) => {
+  },
+  removeProduct: async (req: Request, res: Response) => {
     // #swagger.tags = ['Carrinho de compras']
     // #swagger.summary = 'Endpoint para remover produtos de um carrinho de compras'
     const url = `http://localhost:5555/products/${req.params.id}`;
@@ -47,9 +38,8 @@ export class ApiController{
       description: "Produto eliminado com sucesso." } */
       res.send(response.data);
     });
-  }
-
-  public getCarts = (req: Request, res: Response) => {
+  },
+  getCarts: async (req: Request, res: Response) => {
     // #swagger.tags = ['Carrinho de compras']
     // #swagger.summary = 'Endpoint que devolve os carinhos de compras da loja e os produtos que estão dentro dele'
     const url = 'http://localhost:5555/carts/';
@@ -57,9 +47,8 @@ export class ApiController{
     .then(function(response: any) {
       res.send(response.data);
     });
-  }
-
-  public auth = (req: Request, res: Response) => {
+  },
+  auth: async (req: Request, res: Response) => {
     // #swagger.tags = ['Carrinho de compras']
     // #swagger.summary = 'Endpoint que devolve o token se o utilizador autenticar com sucesso'
     if(req.body.password == process.env.PASSWORD){
@@ -82,14 +71,5 @@ export class ApiController{
       }];
       res.status(200).send(response);
     }
-    
-  }
-
-  public routes() {
-    this.router.get('/getProducts', validateToken, jsonParser, this.getProducts);
-    this.router.post('/addProduct', validateToken, jsonParser, this.addProduct);
-    this.router.delete('/removeProduct/:id', validateToken, jsonParser, this.removeProduct);
-    this.router.get('/getCarts', validateToken, jsonParser, this.getCarts);
-    this.router.get('/auth', jsonParser, this.auth);
-  }
-}
+  },
+};
