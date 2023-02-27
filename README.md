@@ -6,10 +6,12 @@ Este projeto conta com 3 aplicações backend:
  - Microserviço shoppingCart
 
  ## Indice
-* [Microserviço products](#microservico-products)
-* [Microserviço shoppingCart](#microservico-shoppingcart)
+* [Microserviço products](#microserviço-products)
+* [Microserviço shoppingCart](#microserviço-shoppingCart)
 * [REST API](#rest-api)
 
+
+<a name="microserviço-products"></a>
 ## Microserviço products
 
 - Para este microserviço foi criada uma Rest API através do express e está à escuta na porta 4545 (http://localhost:4545)
@@ -22,6 +24,7 @@ Este projeto conta com 3 aplicações backend:
 | GET | /listProducts | retorna todos os produtos disponíveis na collection products |
 | POST | /addProduct | permite adicionar um produto na collection products (não solicitado) |
 
+<a name="microserviço-shoppingCart"></a>
 ## Microserviço shoppingCart
 
 - Para este microserviço foi criada uma Rest API através do express e está à escuta na porta 5555 (http://localhost:5555)
@@ -37,7 +40,7 @@ Este projeto conta com 3 aplicações backend:
 | GET | /carts | retorna todos os carrinhos de compras da lojas e os produtos dentro da cada carrinho |
 | POST | /carts | permite adicionar um carrinho de compras à tabela carts |
 
-
+<a name="rest-api"></a>
 ## API Rest
 
 - Esta API Rest está à escuta na porta 3000 (http://localhost:3000) e consome os microserviçoes através da biblioteca AXIOS.
