@@ -26,8 +26,8 @@ const doc = {
 const outputFile = "./swagger_output.json";
 const endpointsFiles = [
   process.env.npm_lifecycle_event === "swagger"
-    ? "build/controller/api.controller.js"
-    : "src/controller/api.controller.ts",
+    ? "build/src/routes/api.routes.js"
+    : "src/routes/api.routes.ts",
 ];
 
 (async () => {

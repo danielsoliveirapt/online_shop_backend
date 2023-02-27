@@ -18,7 +18,140 @@
             "description": "get token from login"
         }
     },
-    "paths": {},
+    "paths": {
+        "/getProducts": {
+            "get": {
+                "tags": [
+                    "Produtos"
+                ],
+                "summary": "Endpoint que retorna todos os produtos da loja",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/addProduct": {
+            "post": {
+                "tags": [
+                    "Carrinho de compras"
+                ],
+                "summary": "Endpoint que permite adicionar produtos a um carrinho de compras",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Produto adicionado com sucesso."
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/removeProduct/{id}": {
+            "delete": {
+                "tags": [
+                    "Carrinho de compras"
+                ],
+                "summary": "Endpoint para remover produtos de um carrinho de compras",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Produto eliminado com sucesso."
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/getCarts": {
+            "get": {
+                "tags": [
+                    "Carrinho de compras"
+                ],
+                "summary": "Endpoint que devolve os carinhos de compras da loja e os produtos que estão dentro dele",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/auth": {
+            "get": {
+                "tags": [
+                    "Carrinho de compras"
+                ],
+                "summary": "Endpoint que devolve o token se o utilizador autenticar com sucesso",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
     "security": [
         {
             "apiKeyAuth": []

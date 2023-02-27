@@ -226,7 +226,7 @@ Este projeto conta com 3 aplicações backend:
 ### Testes
     Através do JetTest executei alguns testes à API
 
-```json
+```typescript
 describe("Test app.ts", () => {
   test("Catch-all route", async () => {
     const res = await request(app).get("/");
@@ -253,3 +253,12 @@ describe("API routes", () => {
   });
 });
 ```
+
+### Documentação
+    Mais documentação da API pode ser obtida no ficheiro: /api/swagger_output.json
+
+![swagger](https://i.imgur.com/Ti5cFdB.png)
+
+## Autor
+
+Daniel Oliveira
