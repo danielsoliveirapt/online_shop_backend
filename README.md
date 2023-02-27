@@ -35,6 +35,7 @@ Este projeto conta com 3 aplicações backend:
 | POST | /products | permite adicionar um produto à tabela products |
 | DELETE | /products/:id | permite remover um produto da tabelas products |
 | GET | /carts | retorna todos os carrinhos de compras da lojas e os produtos dentro da cada carrinho |
+| POST | /carts | permite adicionar um carrinho de compras à tabela carts |
 
 
 ## API Rest
@@ -165,6 +166,37 @@ Este projeto conta com 3 aplicações backend:
 
 ### Pedido
 
+`POST /api/addCart`
+
+    Este endpoint consome a API do microserviço shoppingCart e permite adicionar um carrinho de compras.
+
+
+#### Headers
+| Chave | Valor |
+| --- | --- |
+| authorization | {token} |
+
+#### Body
+```json
+{
+    "userId": "3333333",
+    "totalPrice": 0,
+    "totalQuantity": 0
+}
+```
+
+#### Exemplo de Resposta (200 OK)
+```json
+{
+    "msg": "success",
+    "message": "Record inserted with success",
+    "success": true,
+    "status": 201
+}
+```
+
+### Pedido
+
 `GET /api/getCarts`
 
     Este endpoint consome a API do microserviço shoppingCart e retorna todos os carrinhos de compras e os produtos associados a cada um.
@@ -225,25 +257,36 @@ Este projeto conta com 3 aplicações backend:
 
 ### Testes
     Através do JetTest executei alguns testes à API
+    npm run test
+![jettest](https://i.imgur.com/O9tST59.png)
 
 ```typescript
-describe("Test app.ts", () => {
-  test("Catch-all route", async () => {
-    const res = await request(app).get("/");
-    expect(res.body).toEqual({ message: "API Online Shop." });
-  });
-});
-
 describe("API routes", () => {
-  test("should return 200 & add product", async () => {
+  test("should return 201 & add product", async () => {
     const product = {
       "price": 200,
       "quantity": 4,
       "productId": "198554",
-      "cartShoppingCartId": 2
+      "cartShoppingCartId": 203
     }
-    const token = "token";
+    const token = "";
     const res = await request(app).post("/api/addProduct").set('authorization', `${token}`).send(product);
+    expect(res.body).toEqual({
+      "msg": "success",
+      "message": "Record inserted with success",
+      "success": true,
+      "status": 201
+    });
+  });
+
+  test("should return 201 & add cart", async () => {
+    const cart = {
+      "userId": "4444444",
+      "totalPrice": 0,
+      "totalQuantity": 0
+    }
+    const token = "";
+    const res = await request(app).post("/api/addCart").set('authorization', `${token}`).send(cart);
     expect(res.body).toEqual({
       "msg": "success",
       "message": "Record inserted with success",

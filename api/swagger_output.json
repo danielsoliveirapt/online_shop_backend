@@ -136,6 +136,36 @@
         }
       }
     },
+    "/addCart": {
+      "post": {
+        "tags": [
+          "Carrinho de compras"
+        ],
+        "summary": "Endpoint que permite adicionar um carrinho de compras à loja",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Carrinho adicionado com sucesso."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
     "/auth": {
       "get": {
         "tags": [

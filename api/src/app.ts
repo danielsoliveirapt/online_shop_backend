@@ -13,10 +13,6 @@ app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 // Fetching API from the routes
 app.use("/api", apiRoutes);
 
-app.use("/", (req: Request, res: Response): void => {
-    res.send({ message: "API Online Shop." });
-  });
-
 app.set('port', process.env.PORT || 3000);
 
 export default app;

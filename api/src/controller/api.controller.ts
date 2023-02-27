@@ -1,10 +1,5 @@
 import { Router, Response, Request } from "express";
 const axios = require('axios');
-const bodyParser = require('body-parser')
-var jsonParser = bodyParser.json()
-const validateToken = require("../middleware/auth");
-const jwt = require("jsonwebtoken")
-require('dotenv').config();
 
 module.exports = {
   getProducts: async (req: Request, res: Response) => {
@@ -23,8 +18,7 @@ module.exports = {
     const data = req.body;
     axios.post(url, data)
     .then(function(response: any) {
-      /* #swagger.responses[201] = { 
-      description: "Produto adicionado com sucesso." } */
+      // #swagger.responses[201] = { description: "Produto adicionado com sucesso." }
       res.send(response.data);
     });
   },
@@ -34,8 +28,18 @@ module.exports = {
     const url = `http://localhost:5555/products/${req.params.id}`;
     axios.delete(url)
     .then(function(response: any) {
-      /* #swagger.responses[200] = { 
-      description: "Produto eliminado com sucesso." } */
+      // #swagger.responses[200] = { description: "Produto eliminado com sucesso." }
+      res.send(response.data);
+    });
+  },
+  addCart: async (req: Request, res: Response) => {
+    // #swagger.tags = ['Carrinho de compras']
+    // #swagger.summary = 'Endpoint que permite adicionar um carrinho de compras à loja'
+    const url = 'http://localhost:5555/carts/';
+    const data = req.body;
+    axios.post(url, data)
+    .then(function(response: any) {
+      //#swagger.responses[201] = { description: "Carrinho adicionado com sucesso." }
       res.send(response.data);
     });
   },

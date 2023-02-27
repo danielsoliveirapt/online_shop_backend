@@ -27,4 +27,14 @@ module.exports = {
             throw error;
         }
     }),
+    addCart: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            yield Cart_1.Cart.insert(req.body);
+            res.status(jsonMessagesDb.db.successInsert.status).send(jsonMessagesDb.db.successInsert);
+        }
+        catch (error) {
+            res.status(jsonMessagesDb.db.dbError.status).send(jsonMessagesDb.db.dbError);
+            throw error;
+        }
+    }),
 };

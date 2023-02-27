@@ -9,6 +9,7 @@ router.get("/getProducts", validateToken, jsonParser, apiController.getProducts)
 router.post("/addProduct", validateToken, jsonParser, apiController.addProduct);
 router.delete("/removeProduct/:id", validateToken, jsonParser, apiController.removeProduct);
 router.get("/getCarts", validateToken, jsonParser, apiController.getCarts);
+router.post("/addCart", validateToken, jsonParser, apiController.addCart);
 router.get("/auth", jsonParser, apiController.auth);
 
 export default router;

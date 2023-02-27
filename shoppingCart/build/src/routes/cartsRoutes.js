@@ -8,4 +8,5 @@ const jsonMessagesDb = require('../assets/jsonMessagesDb');
 const cartController = require('../controllers/cartController');
 const router = express_1.default.Router();
 router.get("/", cartController.listCarts);
+router.post("/", cartController.addCart);
 exports.default = router;
